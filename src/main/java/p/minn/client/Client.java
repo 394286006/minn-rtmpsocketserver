@@ -13,6 +13,7 @@ import p.minn.packet.amf.RtmpPacket;
 import p.minn.packet.amf.RtmpWrapper;
 import p.minn.packet.amf.TypeValue;
 import p.minn.utils.DateUtil;
+import p.minn.utils.RtmpProtocolUtil;
 import p.minn.utils.Util;
 
 /**
@@ -35,7 +36,7 @@ public class Client extends BaseClient<RtmpPacket, RtmpWrapper> {
 
   public void onEvent(RtmpWrapper wrapper, RtmpPacket packet) throws Exception {
     // TODO Auto-generated method stub
-    Util.traceWrappers(wrapper.getInfo(), "onEvent:" + wrapper.getName());
+    RtmpProtocolUtil.traceWrappers(wrapper.getInfo(), "onEvent:" + wrapper.getName());
     String invokeID = wrapper.getName();
     System.out.println("invokeID:"+invokeID);
     if (invokeID.equals("flashCallJava")) {
