@@ -58,7 +58,7 @@ public class Client extends BaseClient<RtmpPacket, RtmpWrapper> {
     }
   }
 
-  public void javaCallFlash(RtmpWrapper wrapper) throws IOException {
+  public void javaCallFlash(RtmpWrapper wrapper) throws Exception {
     double responseId = wrapper.getId();
     
     Map<String, TypeValue> args =
@@ -67,8 +67,11 @@ public class Client extends BaseClient<RtmpPacket, RtmpWrapper> {
         args.put("msg", new TypeValue(DateUtil.toDateTime(System.currentTimeMillis())));
         RtmpPacket packet = RtmpMessageFactory.resultMessage(responseId, 0, 3, 4, args);
         this.addPacket(packet);
-   
   }
+
+public void broadCast(RtmpPacket packet) throws Exception{
+    evt.broadcast(group,packet,this.clientId);
+}
 
 
   public void onStreamPlayRequest(RtmpWrapper wrapper, RtmpPacket packet) throws IOException {
